@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Approval Status</title>
+<meta charset="UTF-8">
+
+	<script src="js/jQuery/jquery-1.9.1.min.js"></script>
+	<script src="js/jQuery/jquery-ui.min.js"></script>
+	<script src="js/jQuery/jquery.blockUI.js"></script>
+	<script src="js/jQuery/jquery.tablesorter.js"></script>
+
+	<script src="js/app/util/util.js"></script>
+	<script src="js/app/util/RESTUtil.js"></script>
+	<script src="js/app/approvalData.js"></script>
+	<script src="js/app/orgunit.js"></script>
+	<script src="js/app/oust.js"></script>
+	<script src="js/app/preloadProcessManager.js"></script>
+	<script src="js/app/period.js"></script>
+	<script src="js/app/util/MsgManager.js"></script>
+
+
+	<link rel="stylesheet" href="css/gmap3/gmap3-menu.css" />
+	<link rel="stylesheet" href="css/app/style.css">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<link rel="stylesheet" href="css/jQuery/tablesorter/style.css">
+
+</head>
+
+<body>
+
+	<div id="header">
+		<img id="headerBanner" src="img/logo_banner.png" style="cursor:pointer" title="View home page">
+		<span id="headerText" style="cursor:pointer" title="View home page"></span>
+		<div id="headerRightSideControls">
+			<a href="https://docs.google.com/document/d/1f_RSSjas-IJxW7MP0T9g8rJxlEKqreFyyFgylzoYf6w/" target="_blank" style="color: White;">v 0.5</a>
+			| <button type="button" id="closeButton" onclick="window.location.href='../../../dhis-web-dashboard-integration/index.action'"><span nameId='closeButton'>Close</span></button>
+		</div>
+	</div>
+
+	<div style="margin-top:55px;">
+
+		<div class="pageTitle">Approval Status</div>
+
+		<fieldset id="analyticsSet">
+			<legend>Params.</legend>
+
+			<table>
+				<tr>
+					<td colspan="2">
+						<div id="orgUnitTreeContainer">
+							<div id="selectionTree"></div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="right">Org Unit Level <span class="required">*</span></td>
+					<td><select id='level'></select></td>
+				</tr>
+				<tr>
+					<td class="right">Period Type <span class="required">*</span></td>
+					<td><select id='periodType'></select></td>
+				</tr>
+				<tr>
+					<td class="right">Period <span class="required">*</span></td>
+					<td><select id='periodList' name="periodList"></select></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td colspan="4">
+						<button id="runBtn" class="steelBlueButton" style="width: 50px;" >Run</button>
+					</td>
+				</tr>
+				
+				<tr style="display:none;">
+					<td colspan='2'><a class='onHoverLink' id="showAdvancedOptionLink" displayed='false' href="#">Advanced options [+]</a></td>
+				</tr>
+				
+			</table>
+			
+			
+		</fieldset>
+		<br>
+		<fieldset class="filter">
+		
+			<legend>Filter.</legend>
+			
+			<table>
+				<tr>
+					<td>Filter by Approved</td>
+					<td>
+						
+						<select id='approvedFilter' style="background-color:#fff">
+							<option value='all'>All</option>
+							<option value='Approved'>Approved</option>
+							<option value='Unapproved'>Unapproved</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Filter by Accepted</td>
+					<td>
+						<select id='acceptedFilter' style="background-color:#fff">
+							<option value='all'>All</option>
+							<option value='Accepted'>Accepted</option>
+							<option value='Pending'>Pending</option>
+						</select>
+					</td>
+				</tr>
+			</table>
+		</fieldset>
+	
+		<div id='loaderDiv' style='display:none;'>
+			<table>
+				<tr>
+					<td>
+						<div id='progressDiv' style="font-size: 13px; font-style:italic; color:#191970; width:100%;"></div>
+					</td>
+					<td>
+						<img src='img/loading.gif'>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+			
+		<div id='dataListingDiv' style="display: none;margin-top:15px;">
+		
+			<div id='errorMessage' class='noteInfo2' style="color:gray;"> * Note: View table missing in database.</div>
+			<div class="noteInfo"> *** Press and keep 'Shift' to sort in multi columns</div>
+			
+			<table id="dataListingTb" class="listTable tablesorter">
+				<thead>
+					<tr>
+						<th>Entity</th>
+						<th>Data Set</th>
+						<th>Approved</th>
+						<th>Accepted</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+			
+		</div>
+
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,561 @@
+
+*
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", arial, Sans-Serif;
+	font-size: 11px;
+	line-height: 140%;
+}
+
+/*----------------------------------------------------------------------------*/
+/* Header                                                                     */
+/*----------------------------------------------------------------------------*/
+
+#header {
+	background-color: #467e4a;
+	height: 44px;
+	position: fixed;
+	z-index: 10;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	box-shadow: 0 0 3px #222;
+}
+
+
+#headerBanner {
+	position: absolute;
+	top: 13px;
+	left: 55px;
+}
+
+#headerText {
+	position: absolute;
+	top: 15px;
+	left: 175px;
+	font-weight: bold;
+	color: #fff;
+	font-size: 16px;
+}
+
+#headerRightSideControls {
+	height: 20px;
+	position: fixed;
+	z-index: 11;
+	top: 7px;
+	right: 4px;
+}
+
+/*----------------------------------------------------------------------------*/
+/* Organisation Unit Web Tree                                                 */
+/*----------------------------------------------------------------------------*/
+
+div#selectionTree
+{
+	font-size: 9pt;
+	background-color: white;
+	overflow: auto;
+	width: 500px;
+	height: 200px;
+	border: 1px solid #e3e3e3;
+	padding-top: 4px;
+}
+
+div#selectionTree ul
+{
+	margin: 0;
+	padding: 0;
+}
+
+div#selectionTree ul li:last-child
+{
+	background-position: 0pt -1766px;
+}
+
+div#selectionTree li
+{
+	list-style-type: none;
+	white-space: nowrap;
+	margin-top: 0;
+	padding: 0 0 1px 15px;
+	background-color: transparent;
+	background-image: url('../images/treeview-gray-line.gif');
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: 0pt 0pt;
+}
+
+div#selectionTree span.toggle
+{
+	margin-left: -12px;
+	cursor: pointer;
+}
+
+div#selectionTree a
+{
+	display: inline;
+	border: 0;
+	padding: 0;
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+div#selectionTree a:hover
+{
+	color: #555;
+	background-color: #fff;
+}
+
+div#selectionTree a.selected
+{
+	color: orange !important;
+	font-weight: bold;
+}
+
+/*----------------------------------------------------------------------------*/
+/* Left bar                                                                   */
+/*----------------------------------------------------------------------------*/
+
+#leftBar
+{
+	height: 100%;
+	background-color: #f7f7f7;
+	width: 235px;
+	position: fixed;
+	top: 46px;
+	left: 0;
+	padding-top: 6px;
+	border-right: 1px solid #ddd;
+	box-shadow: #ddd 0 0 2px 0;
+	z-index: 10;
+}
+
+#leftBarContents
+{
+	font-size: 9pt;
+}
+
+#leftBarContents h2
+{
+	color: #333;
+	font-size: 9pt;
+	margin: 16px 20px 1px 20px;
+	padding: 8px 0 8px 0;
+	font-weight: bold;
+}
+
+#leftBarContents ul
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 8px;
+}
+
+#leftBarContents ul a
+{
+	display: block;
+	color: #333;
+	text-decoration: none;
+	padding: 8px 12px;
+	cursor: pointer;
+}
+
+#leftBarContents a:hover
+{
+	text-decoration: none;
+	background-color: #ededed;
+	border-radius: 4px;
+}
+
+/*----------------------------------------------------------------------------*/
+/* Main page                                                                  */
+/*----------------------------------------------------------------------------*/
+
+#mainPage {
+	margin-top: 65px;
+}
+
+.pageTitle {
+	font-size: 18px;
+	color: #333333;
+	font-weight:bold;
+	margin-bottom: 10px;
+}
+.page
+{
+	font-size: 10pt;
+}
+
+
+/*----------------------------------------------------------------------------*/
+/* Input                                                                      */
+/*----------------------------------------------------------------------------*/
+
+input, textarea, select {
+	background: none;
+	border: 1px solid;
+}
+
+input[type="text"],input[type="number"]
+{
+	padding-left: 4px;
+	width: 200px;
+}
+
+select
+{
+	width: 205px;
+}
+
+
+/*----------------------------------------------------------------------------*/
+/* Table                                                                      */
+/*----------------------------------------------------------------------------*/
+
+
+.listTable
+{
+	font-size: 11px;
+	background: #fff;
+	width: 100%;
+	border-collapse: collapse;
+	text-align: left;
+	border: 1px solid #ccc;
+}
+
+.listTable tbody tr:nth-child(odd)
+{
+	// background: #f9f9f9;
+	background: #fff;
+}
+
+.listTable tbody tr:nth-child(even)
+{
+	background: #fff;
+}
+
+.listTable th
+{
+	font-size: 12px;
+	font-weight: bold;
+	color: Black;
+	padding: 5px 4px;
+	border-bottom: 1px solid Black;
+	background-color: #E6ECF3;
+}
+
+.listTable tbody td
+{
+	border: 1px solid #ccc;
+	color: Black; /*#669; */
+	padding: 6px; /* 6px 6px; */
+}
+
+.listTable tfoot td
+{
+	border-style: none;
+	border-top: 1px solid Black;
+	padding: 8px 4px;
+}
+
+
+td.tdCenter
+{
+	text-align: center;	
+}
+
+.noteInfo {
+	background: #F5F5F5;
+	padding: 3px;
+	font-size: 10px;
+}
+
+.noteInfo2 {
+	padding: 3px;
+	font-size: 10px;
+}
+
+.mergeCell{
+	border-top:0px !IMPORTANT;
+	border-bottom:0px !IMPORTANT;
+}
+
+.mergeFirstCell{
+	border-bottom:0px !IMPORTANT;
+}
+
+/*----------------------------------------------------------------------------*/
+/* Button                                                                      */
+/*----------------------------------------------------------------------------*/
+
+
+button
+{
+	background-color: #96ada7;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius:5px;
+	border: 1px solid #566963;
+	color: #fff;
+	cursor: pointer;
+	font-family: arial;
+	font-size: 12px;
+	padding:2px 4px;
+	text-decoration: none;
+	text-shadow:0px 1px 0px #2b665e;
+}
+
+button:hover
+{
+	background-color: #809090;
+	box-shadow: 0px 0px 1px #777;
+}
+
+
+.redButton {
+	background-color: #f49966; /*#f47744;*/
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	border:1px solid #d02718;
+	display:inline-block;
+	cursor:pointer;
+	color:#eeeeee;
+	font-family:arial;
+	font-size:12px;
+	padding:2px 4px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #810e05;
+}
+.redButton:hover {
+	background-color: #f65d4f; /*#c62d1f;*/
+}
+.redButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+.steelBlueButton {
+	background-color: #A0B4DE; /*#768d87;*/
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	border:1px solid #8094AE;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:12px;
+	padding:2px 4px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2b665e;
+}
+.steelBlueButton:hover {
+	background-color: #90A4CE;
+}
+.steelBlueButton:active {
+	position:relative;
+	top:1px;
+}
+.steelBlueButton.smallButton {
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	font-size:11px;
+	padding:1px 3px;
+}
+
+/*----------------------------------------------------------------------------*/
+/* fieldset                                                                   */
+/*----------------------------------------------------------------------------*/
+
+fieldset
+{
+	border: 1px solid Gray; /*#96ada7;*/
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	display: inline;
+	width: 520px;
+	margin-bottom: 10px;
+}
+
+
+fieldset.filter
+{
+	background-color: #fafafa;
+}
+
+legend
+{
+	font-size: 10pt;	
+	/*font-style: italic;
+	font-weight: bold;*/
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+.steelBlue-fieldset{
+	border: 2px solid #8AA2C0;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	width:90%
+}
+
+.steelBlue-fieldset legend
+{
+	font-style: italic;
+	font-weight: bold;
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+
+.clearButton {
+	background-color: #FFF; /*#768d87;*/
+	border: none;
+	display: inline-block;
+	cursor: pointer;
+	color: #333;
+	font-size:12px;
+	padding:0px 0px;
+	text-decoration: underline;
+	text-shadow: none;
+	text-align: center;
+}
+
+.clearButton:hover {
+	background-color: #FFF; /*#6c7c7c;*/
+	box-shadow: none;
+}
+
+/*----------------------------------------------------------------------------*/
+/* Option selector                                                            */
+/*----------------------------------------------------------------------------*/
+
+.option-loading
+{
+	font-style: italic;
+	color: #96ada7;
+}
+
+#message
+{
+	font-style: italic;
+}
+
+.bold{
+	font-weight: bold;
+}
+
+.sectionDiv
+{
+	margin-top: 50px;
+}
+
+
+/*----------------------------------------------------------------------------*/
+/* Msg Show/Hide Related                                                               */
+/*----------------------------------------------------------------------------*/
+
+#divMsgArea
+{
+	padding: 5px;
+	background-color: #eee;
+	border: 1px solid #bbb;
+	text-align: right;
+	position: fixed;
+	top: 50px;
+	right: 10px;
+	filter: alpha(opacity=85);
+	opacity: 0.85;
+	border-radius: 3px;
+	z-index: 5;
+}
+
+#spanMsgAreaClose
+{
+	float:left;
+	cursor:pointer;
+	margin-right:5px;
+}
+
+/*----------------------------------------------------------------------------*/
+/* Tab Section Related..                                                           */
+/*----------------------------------------------------------------------------*/
+
+.tabs
+{
+	font-size: 13px;
+	font-weight: normal;
+}
+
+.divTabSection
+{
+	min-height: 200px;
+}
+
+
+/*----------------------------------------------------------------------------*/
+/* Popup/Dialog Related                                                           */
+/*----------------------------------------------------------------------------*/
+
+.ui-dialog-title
+{
+	text-shadow: none;
+	font-weight: normal;
+}
+.ui-button-text 
+{
+	text-shadow: none;
+	font-weight: bold;
+}
+
+
+/*----------------------------------------------------------------------------*/
+/* Message                                                                    */
+/*----------------------------------------------------------------------------*/
+
+#headerMessage
+{
+	top: 3px;
+	left: 155px;
+	position: fixed;
+	display: none;
+	padding: 10px;
+	padding-bottom: 9px;
+	width: 410px;
+	background-color: #f8eab0;
+	border: 1px solid #dbae56;
+	z-index: 21;
+	font-size: 9pt;
+	text-align: center;
+	border-radius: 3px;
+}
+
+
+/*----------------------------------------------------------------------------*/
+/* Full Calendar                                                                    */
+/*----------------------------------------------------------------------------*/
+
+div.fc-content
+{
+	cursor:pointer;
+}
+
+/** Note **/
+
+.noteInfo
+{
+	background: #F5F5F5;
+	padding: 3px;
+	font-size: 10px;
+	font-style: italic;
+}
+
+.required
+{
+	color: red;
+}
