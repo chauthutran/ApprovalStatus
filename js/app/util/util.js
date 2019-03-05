@@ -75,9 +75,8 @@ var monthShortNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
 	
 Util.formatDate = function( dateTimeStr )
 {
-	var arrDateTime = dateTimeStr.split(" ");
-	var attDate = arrDateTime[0].split("-");
-	var arrTime = arrDateTime[1].split(":");
+	var attDate =  dateTimeStr.substring( 0, 10 );
+	var arrTime = dateTimeStr.substring( 11, 19 );
 	var monthIdx = eval(attDate[1]) - 1;
 
 	return attDate[0] + " " + monthShortNames[monthIdx] + " " + attDate[2] + "  " + arrTime[0] + ":" + arrTime[1];

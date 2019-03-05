@@ -144,7 +144,7 @@ function ApprovalData( period_UI, orgUnit_DM )
 	
 		RESTUtil.getAsyncData( url ,function( json_Data )
 		{
-			me.ouDataSetList = json_Data.rows;
+			me.ouDataSetList = json_Data.listGrid.rows;
 		}, function(){
 			me.loadedOrgUnits = true;
 			me.createTableAndPopulateData();
@@ -160,7 +160,7 @@ function ApprovalData( period_UI, orgUnit_DM )
 	
 		RESTUtil.getAsyncData( url ,function( json_Data )
 		{
-			me.approvalData = json_Data.rows;
+			me.approvalData = json_Data.listGrid.rows;
 		}, function(){
 			me.loadedApprovalData = true;
 			me.createTableAndPopulateData();
@@ -172,7 +172,7 @@ function ApprovalData( period_UI, orgUnit_DM )
 		var url = me._queryURL_User_Names
 		RESTUtil.getAsyncData( url ,function( json_Data )
 		{
-			me.userList = me.convertUserListToArray( json_Data.rows );
+			me.userList = me.convertUserListToArray( json_Data.listGrid.rows );
 		}, function(){ 
 			me.loadedUserList = true;
 			me.createTableAndPopulateData();
