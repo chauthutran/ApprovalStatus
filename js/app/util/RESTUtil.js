@@ -27,6 +27,15 @@ RESTUtil.getSynchData = function( url ) {
 	}).responseText;
 };
 
+RESTUtil.getTextData = function( url, exeFunc ) {
+	return $.ajax({
+		type: "GET",
+		url: url,
+		async: true,
+		success: exeFunc 
+	}).responseText;
+};
+
 
 
 // End of Data Retrieval Manager Class

@@ -5,6 +5,8 @@
 var _appManifest = $.parseJSON( RESTUtil.getSynchData( 'manifest.webapp' ) );
 // -- URLs
 var _appURL = _appManifest.activities.dhis.href.replace( '/dhis-web-maintenance-appmanager', '' ) + '/';
+
+
 // ------------------------------------
 
 var _queryURL_api = _appURL + 'api/';
@@ -44,9 +46,10 @@ function ApprovalData( period_UI, orgUnit_DM )
 	me.PARAM_START_DATE = "@PARAM_START_DATE";
 	me.PARAM_END_DATE = "@PARAM_END_DATE";
 	
-	me._queryURL_OrgUnit_By_Level = _queryURL_api + "sqlViews/" + me.PARAM_SQL_VIEW_GET_ORGUNIT_BY_LEVEL + "/data.json?var=level:" + me.PARAM_LEVEL + "&var=periodTypeName:" + me.PARAM_PERIOD_TYPE_NAME + "&var=ouLevel:" + me.PARAM_SELECTED_OU_LEVEL + "&var=ouId:" + me.PARAM_SELECTED_OU_ID;
-	me._queryURL_Approve_Data = _queryURL_api + "sqlViews/" + me.PARAM_SQL_VIEW_APPROVOVE_DATA + "/data.json?var=dataLevel:" + me.PARAM_LEVEL_ID + "&var=startDate:" + me.PARAM_START_DATE + "&var=endDate:" + me.PARAM_END_DATE;
-	me._queryURL_User_Names = _queryURL_api + "sqlViews/" + me.PARAM_SQL_VIEW_USER_NAMES + "/data.json";
+	me._queryURL_OrgUnit_By_Level = _queryURL_api + "sqlViews/" + me.PARAM_SQL_VIEW_GET_ORGUNIT_BY_LEVEL + "/data.json?paging=false&var=level:" + me.PARAM_LEVEL + "&var=periodTypeName:" + me.PARAM_PERIOD_TYPE_NAME + "&var=ouLevel:" + me.PARAM_SELECTED_OU_LEVEL + "&var=ouId:" + me.PARAM_SELECTED_OU_ID + "&paging=false";
+	me._queryURL_Approve_Data = _queryURL_api + "sqlViews/" + me.PARAM_SQL_VIEW_APPROVOVE_DATA + "/data.json?paging=false&var=dataLevel:" + me.PARAM_LEVEL_ID + "&var=startDate:" + me.PARAM_START_DATE + "&var=endDate:" + me.PARAM_END_DATE + "&paging=false";
+	// me._queryURL_User_Names = _queryURL_api + "sqlViews/" + me.PARAM_SQL_VIEW_USER_NAMES + "/data.json";
+	me._queryURL_User_Names = _queryURL_api + "users.json?fields=id,name&paging=false";
 	
 	me.levelTag = $( "#level" );
 	me.periodTypeTag = $( "#periodType" );
@@ -59,11 +62,14 @@ function ApprovalData( period_UI, orgUnit_DM )
 	me.loaderDivTag = $( "#loaderDiv" );
 	me.progressDivTag = $( "#progressDiv" );
 	me.errorMessageTag = $( "#errorMessage" );
+	me.closeButtonTag = $("[name='closeButton']");
+
 		
 	me.sortPerformedBefore = false;
 		
 	me.initialSetup = function()
 	{
+		new Header();
 		me.errorMessageTag.hide();
 		Util.disableTag( me.runBtnTag, true );
 		me.setup_Event();
@@ -71,6 +77,11 @@ function ApprovalData( period_UI, orgUnit_DM )
 	
 	me.setup_Event = function()
 	{
+		
+		me.closeButtonTag.click( function(){
+			window.location.href = _appURL;
+		});
+
 		me.runBtnTag.click( function(){
 			me.run();
 		});
@@ -172,7 +183,7 @@ function ApprovalData( period_UI, orgUnit_DM )
 		var url = me._queryURL_User_Names
 		RESTUtil.getAsyncData( url ,function( json_Data )
 		{
-			me.userList = me.convertUserListToArray( json_Data.listGrid.rows );
+			me.userList = json_Data.users;
 		}, function(){ 
 			me.loadedUserList = true;
 			me.createTableAndPopulateData();
@@ -183,17 +194,6 @@ function ApprovalData( period_UI, orgUnit_DM )
 		});
 	};
 	
-	me.convertUserListToArray = function( userList )
-	{
-		var list = [];
-		for( var i = 0; i<userList.length; i++ )
-		{
-			var id = userList[i][0];
-			var name = userList[i][1];			
-			list[id] = name;
-		}
-		return list;
-	};
 	
 	me.checkDataLoaded = function()
 	{
@@ -215,8 +215,8 @@ function ApprovalData( period_UI, orgUnit_DM )
 			// STEP 2. Populate approval data		
 			me.populateApprovalData( tbody, me.approvalData );
 			
-			// STEP 3. Populate User names who approved data	
-			me.populateUsername( tbody, me.userList );
+			// // STEP 3. Populate User names who approved data	
+			// me.populateUsername( tbody, me.userList );
 			
 			// STEP 4. Sort data in table by Orgunit Or dataset
 			me.makeTableSortable( me.dataListingTbTag );
@@ -280,12 +280,17 @@ function ApprovalData( period_UI, orgUnit_DM )
 			
 			var ouId = approvalData[i][0];
 			var dsId = approvalData[i][1];
+		
 			var accepted = me.convertBoolValue( approvalData[i][2] );
 			var who = approvalData[i][3];
 			var date = Util.formatDate( approvalData[i][4] );
 	
 			var id = "data_" + ouId + "_" + dsId;
-			
+// if( id == "data_mIJ0Ch8qJwE_DO8wOunkzi3" )
+// {
+// 	console.log( approvalData[i] );
+// 	var fsadf = 0;
+// }
 			// Update 'approved' infor.
 			var approvedTag = tbody.find("td[id='" + id + "_approved']")
 			approvedTag.html( approved );
@@ -395,9 +400,7 @@ function ApprovalData( period_UI, orgUnit_DM )
 	
 	me.convertBoolValue = function( value )
 	{
-		if( value == "" ) return value;
-		
-		return ( value == 'true' ) ? "Accepted" : "Pending";
+		return ( value ) ? "Accepted" : "Pending";
 	};
 	
 	me.makeTableSortable = function( table )
